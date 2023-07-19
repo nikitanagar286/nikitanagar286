@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz website</title>
+</head>
+<link rel="stylesheet" href="quiz.css">
+<body>
+    <div class="main-div">
+<div class="inner-div">
+    <h2 class="question"> question comes here</h2>
+    <ul>
+        <li>
+            <input type="radio" name="answer" id="ans1" class="answer">
+            <label for="ans1" id="option1">answer opetion</label>
+        </li>
+        <li>
+            <input type="radio" name="answer" id="ans2" class="answer">
+            <label for="ans2" id="option2">answer opetion</label>
+        </li>
+        <li>
+            <input type="radio" name="answer" id="ans3" class="answer">
+            <label for="ans3" id="option3">answer opetion</label>
+        </li>
+        <li>
+            <input type="radio" name="answer" id="ans4" class="answer">
+            <label for="ans4" id="option4">answer opetion</label>
+        </li>
+    </ul>
+    <button id="submit">Submit</button>
+    <div id="showscore" class="scoreArea"></div>
+</div>
+    </div>
+</body>
+<script>
+    const quizDB=[
+        {
+        question:"Q1: what is the full from of HTML?",
+        a:"hello To MY Land",
+        b:"hey TEXT Markup Language",
+        c:" HYPERTEXT Makeup Language",
+        d:"HYPERTEXT Markup Language",
+        ans:"ans4"
+    },
+    {
+        question:"Q2: what is the full from of css?",
+        a: "casecading style sheets",
+        b: " casecading style sheep",
+        c: "casecading super sheets",
+        d: "cartroon style sheets",
+        ans: "ans1"
+    },
+    {
+        question:"Q3: what is the full from of HTTP?",
+        a: "HYPERTEXT Transfer product",
+        b: "HYPERTEXT Test product",
+        c: "HYETEXT Transfer product",
+        d: "HYPERTEXT Transfer protocol",
+        ans: "ans4"
+
+    },
+    {
+    question:"Q4: what is the full from of JS?",
+        a: "JSON Script",
+        b: "Java Script",
+        c: "just script",
+        d: "java super",
+        ans: "ans2"
+
+    },
+    {question:"Q5: how many sizes of headers are available in HTML by default?",
+        a: "1",
+        b: "2",
+        c: "6",
+        d: "4",
+        ans: "ans3"
+
+    },
+    {
+
+    question:"Q6: what is the smallest header in html by default?",
+        a: "h1",
+        b: "h6",
+        c: "h4",
+        d: "h3",
+        ans: "ans2"
+
+    },
+    {
+        question:"Q7: what are the type of lists available?",
+        a: "Bulleted ,numbered Listes",
+        b: "named , unnamed Lists",
+        c: "Ordered,Unordered Lists.",
+        d: "none",
+        ans: "ans4"
+
+    },
+    {
+        question:"Q8: Javascript is an  _ _ _ _ _ Language?",
+        a: "Object Orientented",
+        b: "object based",
+        c: "procedural",
+        d: "None",
+        ans: "ans1"
+
+    },
+    {
+        question:"Q9:which of the following keywords is used to define a variable in js?",
+        a: "let",
+        b: "const",
+        c: "var",
+        d: "None",
+        ans: "ans3"
+
+    },
+    {
+        question:"Q10: how can a datatype be declared to be a constant type?",
+        a: " const",
+        b: "let",
+        c: "var",
+        d: "None",
+        ans: "ans1"
+
+    }
+];
+const question = document.querySelector('.question')
+const option1=document.querySelector('#option1')
+const option2=document.querySelector('#option2')
+const option3=document.querySelector('#option3')
+const option4=document.querySelector('#option4')
+const submit=document.querySelector('#submit')
+const answers=document.querySelectorAll('.answer')
+const showscore= document.querySelector('#showscore')
+
+let questionCount=0;
+let score=0;
+const loadQuestion =() => {
+    const questionList=quizDB[questionCount];
+    question.innerText=questionList.question;
+    option1.innerText=questionList.a;
+    option2.innerText=questionList.b;
+    option3.innerText=questionList.c;
+    option4.innerText=questionList.d;
+
+}
+loadQuestion();
+getCheckedAnswer=()=>{
+    let answer;
+    answers.forEach((curAnsEle)=>{
+        if(curAnsEle.checked){
+            answer=curAnsEle.id;
+        }
+        
+    });
+    return answer;
+};
+const deselctedAll=()=>{
+    answers.forEach((curAnsEle) => curAnsEle.checked=false);
+
+
+}
+
+submit.addEventListener('click',()=>{
+    const checkedAnswer=getCheckedAnswer();
+    console.log(checkedAnswer)
+    if(checkedAnswer== quizDB[questionCount].ans){
+       score++;
+    };
+    questionCount++;
+    deselctedAll()
+    if(questionCount<quizDB.length){
+        loadQuestion();
+    }else{
+          showscore.innerHTML=`<h3> your scored ${score}/${quizDB.length} </h3>
+          <button class="btn" onclick="location.reload()">Play Again </button>`;
+          showscore.classList.remove('showArea')
+    }
+});    
+    
+    
+
+</script>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player</title>
+    <link rel="stylesheet" href="mp.css">
+    <script src="https://kit.fontawesome.com/c30214a360.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main_div">
+        <div class="music_container">
+            <h2 id="tittle">Rait Zara si</h2>
+            <h3 id="artist">Arjit Singh</h3>
+            <div class="img_container">
+                <img src="music1.jpg" alt="on" srcset="">
+            </div>
+             <audio src="06-Rait Zara Si (128 Kbps).mp3" controls id="music"></audio>
+
+            <!-- controls --> 
+            <div class="music_controls">
+                <i class="fas fa-backward" id="prev" title="previous"></i>
+                <i class="fas fa-play main_button" id="play" title="play"></i>
+                <i class="fas fa-forward" id="next" title="next"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        const music=document.querySelector("#music");
+        const img =document.querySelector('img');
+        const play= document.getElementById('play');
+        const artist= document.getElementById('artist');
+        const tittle= document.getElementById('tittle');
+        const  prev= document.getElementById('prev');
+        const next= document.getElementById('next');
+        const songs=[{
+            name:"04 - Rasiya (128 Kbps).mp3",
+            tittle:"Rasiya",
+            artist:"Pritam",},
+        {
+                name:"05 - Pasoori Nu (128 Kbps).mp3",
+                tittle:"pasoori Nu",
+                artist:"Arjit singh",          
+        },
+    {
+        name:"02 - Tere Vaaste (128 Kbps).mp3",
+        tittle: "Tere vaaste",
+        artist: "Varun Jain",
+    },
+{
+    name:"01 - Naseeb Se (128 Kbps).mp3",
+    tittle: "Naseeb se",
+    artist:"Payal Dev",
+},
+{
+    name:"04 - O Bedardeya (128 Kbps).mp3",
+    tittle: "O Bedardeya",
+    artist: "Arjit singh",
+
+},
+{
+    name:"05 - Jaadui (128 Kbps).mp3",
+    tittle: "Jaadui",
+    artist:"Jubin Nautiyal",
+
+},
+{
+    name:"01- Jai Shri Ram (128 Kbps).mp3",
+    tittle: "Jai shri Ram",
+    artist:"Ajay-Atul",
+},{
+    name: "09- Tu Hai Sheetal Dhaara (128 Kbps).mp3",
+    tittle: " Tu Hai Sheetal Dhaara ",
+    artist: "sonu Nigam",
+},
+{
+ name:"02- Deva Deva (128 Kbps).mp3",
+ tittle:" Deva Deva",
+ artist:"Arjit Singh", 
+},
+{
+    name:"06-Rait Zara Si (128 Kbps).mp3",
+    tittle: "Rait Zara si",
+    artist: "Arjit singh",
+},]
+          
+        let isplaying=false;
+        //  for play function()
+    const playMusic = ()=>{
+            music.play();
+            isplaying=true;
+            play.classList.replace('fa-play','fa-pause');
+            img.classList.add("anime");
+        };
+        //  for pause function() 
+        const pauseMusic=()=>{
+            isplaying=false;
+            music.pause();
+            play.classList.replace('fa-pause','fa-play');
+            img.classList.add("anime");
+        };
+        play.addEventListener('click',()=>{
+            // if (isplaying){
+            //     pauseMusic()
+            // }else{
+            //     playMusic();
+            // }
+            isplaying?pauseMusic():playMusic();
+        });
+        // changing  the music data
+        const loadSong = (songs)=>{
+            tittle.textContent = songs.tittle
+            artist.textContent = songs.artist
+            music.src="music/"+songs.name;
+        
+        
+            
+
+        };
+        songIndex=0;
+        // loadSong( songs[0]);
+        const nextsong=()=>{
+            songIndex=(songIndex+1%songs.length)
+            
+            loadSong( songs[songIndex]);
+            playMusic();
+
+        }
+        const prevsong=()=>{
+            songIndex=(songIndex+1%songs.length)
+            loadSong( songs[songIndex]);
+            playMusic();
+
+        }
+
+        next.addEventListener('click',nextsong);
+        prev.addEventListener('click',prevsong);
+
+    </script>
+    
+</body>
+</html>

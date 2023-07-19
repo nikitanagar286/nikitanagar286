@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animated termometer</title>
+    <link rel="stylesheet" href="project2.css">
+    <link rel="stylesheet" href="https://fontawesome.com/v4/cheatsheet/">
+</head>
+<body>
+    <div class="outerDiv">
+        <div class="innerDiv"></div>
+        <h1 class="main-heading"> Weather<span id="temp" class="font-awasome"></span></h1>
+     <p>Weather refers to day to day temperture ,perciption,and other atomospheric conditions,
+
+<script>
+    const tempLoad=()=>{
+        let temp=document.getElementById("temp");
+        temp.innerHTML="&#x1f324"
+        temp.style.color="yellow"
+        setTimeout(()=>{
+        temp.innerHTML="&#x1f325"
+        temp.style.color="gray"
+        },1000)
+        setTimeout(()=>{
+        temp.innerHTML="&#X1f326"
+        temp.style.color="blue"
+        },2000)
+        setTimeout(()=>{
+        temp.innerHTML="&#X1f327"
+        temp.style.color="pink"
+        },3000)
+        setTimeout(()=>{
+        temp.innerHTML="&#X1f328"
+        temp.style.color="#d63031"
+        },4000)
+        
+    }
+
+    tempLoad();
+    setInterval(tempLoad,5000)
+</script>
+</html>
